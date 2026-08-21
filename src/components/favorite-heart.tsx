@@ -37,7 +37,7 @@ export function FavoriteHeart({
         toast(on ? `Removed ${orgName}` : `Saved ${orgName}`);
       }}
       className={cn(
-        "press flex size-8 items-center justify-center rounded-full bg-white shadow-float",
+        "press tap44 flex size-8 items-center justify-center rounded-full bg-white shadow-float",
         className,
       )}
     >

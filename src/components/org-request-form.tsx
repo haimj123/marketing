@@ -3,10 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
-import { Button } from "./ui/button";
-import { Chip } from "./ui/chip";
-import { Card } from "./ui/card";
 import type { Organization } from "@/lib/types";
+import { cn } from "@/lib/cn";
 
 type Kind = "claim" | "removal" | "abuse";
 
@@ -149,7 +147,7 @@ export function OrgRequestForm({
 
   if (done) {
     return (
-      <Card className="p-6">
+      <div className="rounded-card border border-ink-300 bg-white p-5">
         <div className="flex items-start gap-3">
           <CheckCircle2 aria-hidden className="mt-0.5 size-5 shrink-0 text-success" />
           <div>
@@ -167,7 +165,7 @@ export function OrgRequestForm({
             </p>
           </div>
         </div>
-      </Card>
+      </div>
     );
   }
 
@@ -241,13 +239,20 @@ export function OrgRequestForm({
             <>
               <div className="flex flex-wrap gap-2">
                 {available.map((option) => (
-                  <Chip
+                  <button
                     key={option.key}
-                    active={method === option.key}
+                    type="button"
+                    aria-pressed={method === option.key}
                     onClick={() => setMethod(option.key)}
+                    className={cn(
+                      "press flex h-11 items-center rounded-pill border px-4 text-sm font-semibold",
+                      method === option.key
+                        ? "border-blue-700 bg-blue-050 text-blue-900"
+                        : "border-ink-300 bg-white text-ink-900",
+                    )}
                   >
                     {option.label}
-                  </Chip>
+                  </button>
                 ))}
               </div>
               <p className="mt-2 text-sm text-ink-600">
@@ -323,9 +328,13 @@ export function OrgRequestForm({
         </p>
       )}
 
-      <Button type="submit" size="lg" disabled={!org || busy || !email}>
+      <button
+        type="submit"
+        disabled={!org || busy || !email}
+        className="press h-13 w-full rounded-card bg-blue-700 py-4 font-semibold text-white disabled:opacity-45"
+      >
         {busy ? "Sending…" : "Submit request"}
-      </Button>
+      </button>
     </form>
   );
 }

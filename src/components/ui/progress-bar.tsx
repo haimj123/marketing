@@ -101,7 +101,7 @@ function Track({
       aria-label={label}
     >
       <div
-        className="h-full rounded-pill bg-bronze-500"
+        className="h-full rounded-pill bg-bronze-600"
         style={{ width: `${Math.min(100, pct)}%` }}
       />
     </div>

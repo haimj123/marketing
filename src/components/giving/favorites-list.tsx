@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { OrgGrid } from "./org-rail";
-import { EmptyState } from "./ui/empty-state";
-import { ButtonLink } from "./ui/button";
+import { Heart } from "lucide-react";
+import { OrgFeed } from "../org-rail";
+import { EmptyState } from "../ui/empty-state";
+import { ButtonLink } from "../ui/button";
 import { useDonor } from "@/lib/donor-store";
 import type { OrgListItem } from "@/lib/data";
 import type { Organization } from "@/lib/types";
@@ -30,18 +31,23 @@ export function FavoritesList() {
   }, [key]);
 
   if (!ready || orgs === null) {
-    return <div className="h-64 animate-pulse rounded-card bg-ink-050" aria-hidden />;
+    return <div className="skeleton mx-4 h-64 rounded-card" aria-hidden />;
   }
 
   if (orgs.length === 0) {
     return (
       <EmptyState
+        icon={<Heart aria-hidden className="size-7" strokeWidth={1.5} />}
         title="No favorites yet"
-        body="Save an organization from its profile and it will wait here. Useful for the ones you give to every year without thinking about it."
-        action={<ButtonLink href="/">Browse categories</ButtonLink>}
+        body="Tap the heart on any organization and it waits here. Useful for the ones you give to every year without thinking about it."
+        action={<ButtonLink href="/categories">Browse categories</ButtonLink>}
       />
     );
   }
 
-  return <OrgGrid orgs={orgs as OrgListItem[]} />;
+  return (
+    <div className="app py-4">
+      <OrgFeed orgs={orgs as OrgListItem[]} />
+    </div>
+  );
 }

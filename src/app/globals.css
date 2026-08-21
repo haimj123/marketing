@@ -175,6 +175,27 @@
     transform: scale(0.97);
   }
 
+  /*
+   * A 32px heart and a 28px add button are the sizes the design calls for, and
+   * both are under the 44px minimum a thumb needs. Rather than inflate the
+   * visual, this stretches the *hit* area to 44x44 centred on the control —
+   * the standard fix, and the reason the two rules are not actually in
+   * conflict.
+   */
+  .tap44 {
+    position: relative;
+  }
+
+  .tap44::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
   .clamp-1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;

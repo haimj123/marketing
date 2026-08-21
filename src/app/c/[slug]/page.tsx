@@ -1,23 +1,17 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { CATEGORY_BY_SLUG, CATEGORIES } from "@/lib/categories";
-import { listOrganizations } from "@/lib/data";
-import {
-  countActiveFilters,
-  parseFilters,
-  parsePage,
-  parseSort,
-  type RawParams,
-} from "@/lib/search-params";
-import { OrgGrid } from "@/components/org-rail";
-import { ActiveFilterPills, FilterSheetButton, FilterSidebar, SortSelect } from "@/components/filters";
+import { AppHeader } from "@/components/shell/app-header";
+import { BrowseControls } from "@/components/browse/browse-controls";
+import { OrgFeed } from "@/components/org-rail";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ButtonLink } from "@/components/ui/button";
 import { Pagination } from "@/components/pagination";
-import { CategoryIcon } from "@/components/category-icon";
+import { CATEGORIES, CATEGORY_BY_SLUG } from "@/lib/categories";
+import { listOrganizations } from "@/lib/data";
+import { parseFilters, parsePage, parseSort, type RawParams } from "@/lib/search-params";
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 20;
 
 export const revalidate = 3600;
 
@@ -54,7 +48,7 @@ export default async function CategoryPage({
 
   const raw = await searchParams;
   const filters = parseFilters(raw, slug);
-  const sort = parseSort(raw, filters.near ? "distance" : "relevance");
+  const sort = parseSort(raw, "relevance");
   const page = parsePage(raw);
 
   const all = listOrganizations(filters, sort);
@@ -62,64 +56,32 @@ export default async function CategoryPage({
   const rows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="app py-8">
-      <div className="flex items-start gap-4">
-        <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-blue-050 text-blue-700">
-          <CategoryIcon iconKey={category.iconKey} className="size-6" />
-        </span>
-        <div>
-          <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
-            {category.nameEn}
-          </h1>
-          <p className="he text-base text-ink-600" lang="he" dir="rtl">
-            {category.nameHe}
-          </p>
-          <p className="mt-1 max-w-2xl text-sm text-ink-600">{category.blurb}</p>
-        </div>
-      </div>
+    <>
+      <AppHeader back title={category.nameEn} />
 
-      <div className="mt-8 flex gap-8">
-        <Suspense fallback={<div className="hidden w-64 shrink-0 lg:block" />}>
-          <FilterSidebar />
+      <div className="app">
+        <Suspense fallback={<div className="h-[53px]" />}>
+          <BrowseControls resultCount={all.length} />
         </Suspense>
 
-        <div className="min-w-0 flex-1">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <p className="tabular text-sm text-ink-600">
-              {all.length} {all.length === 1 ? "organization" : "organizations"}
-            </p>
-            <div className="flex items-center gap-2">
-              <Suspense fallback={null}>
-                <FilterSheetButton activeCount={countActiveFilters(raw)} />
-                <SortSelect value={sort} />
-              </Suspense>
-            </div>
-          </div>
+        <p className="tabular py-3 text-sm text-ink-600">
+          {all.length} {all.length === 1 ? "organization" : "organizations"}
+        </p>
 
-          <Suspense fallback={null}>
-            <ActiveFilterPills />
-          </Suspense>
-
-          <div className="mt-4">
-            {rows.length > 0 ? (
-              <OrgGrid orgs={rows} showDistance={Boolean(filters.near)} />
-            ) : (
-              <EmptyState
-                title="Nothing matches those filters"
-                body="Try clearing a filter, or widen the distance. Every listing here is either an IRS record or a profile someone has claimed — we would rather show you nothing than pad the page."
-                action={<ButtonLink href={`/c/${slug}`}>Clear filters</ButtonLink>}
-              />
-            )}
-          </div>
-
-          <Pagination
-            page={page}
-            totalPages={totalPages}
-            basePath={`/c/${slug}`}
-            params={raw}
+        {rows.length > 0 ? (
+          <OrgFeed orgs={rows} showDistance={Boolean(filters.near)} />
+        ) : (
+          <EmptyState
+            title="Nothing matches those filters"
+            body="Try clearing one, or widening the distance. We would rather show you nothing than pad the page."
+            action={<ButtonLink href={`/c/${slug}`}>Clear filters</ButtonLink>}
           />
-        </div>
+        )}
+
+        <Pagination page={page} totalPages={totalPages} basePath={`/c/${slug}`} params={raw} />
+
+        <div className="h-6" />
       </div>
-    </div>
+    </>
   );
 }

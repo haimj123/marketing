@@ -46,10 +46,16 @@ const TABS: Tab[] = [
  * Account tab uses `UserRound`, which has no enclosing circle and fills into a
  * clean silhouette. Check any future icon swap filled, not just outlined.
  */
+/** Routes that are documents rather than app screens. */
+const NO_TAB_BAR = ["/history/statement"];
+
 export function BottomTabBar() {
   const pathname = usePathname();
   const { givingList, ready } = useDonor();
   const pending = givingList.filter((i) => i.status === "pending").length;
+
+  // After the hooks, never before them.
+  if (NO_TAB_BAR.includes(pathname)) return null;
 
   function isActive(tab: Tab): boolean {
     if (tab.href === "/") return pathname === "/";
@@ -60,7 +66,7 @@ export function BottomTabBar() {
   return (
     <nav
       aria-label="Main"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-ink-300 bg-white pb-[env(safe-area-inset-bottom)]"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-ink-300 bg-white pb-[env(safe-area-inset-bottom)] print:hidden"
     >
       <ul className="mx-auto flex h-tabbar max-w-app items-stretch">
         {TABS.map((tab) => {

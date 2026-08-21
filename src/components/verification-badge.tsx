@@ -20,8 +20,8 @@ const TONE: Record<VerificationLevel, string> = {
   unverified: "bg-ink-050 text-ink-600 border-ink-300",
   irs_listed: "bg-ink-050 text-ink-600 border-ink-300",
   claimed: "bg-blue-050 text-blue-700 border-blue-050",
-  claim_verified: "bg-bronze-100 text-bronze-600 border-bronze-100",
-  endorsed: "bg-bronze-100 text-bronze-600 border-bronze-500",
+  claim_verified: "bg-bronze-100 text-ink-900 border-bronze-100",
+  endorsed: "bg-bronze-100 text-ink-900 border-bronze-600",
 };
 
 export function VerificationBadge({

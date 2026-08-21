@@ -1,25 +1,25 @@
 import Link from "next/link";
+import { Compass } from "lucide-react";
+import { EmptyState } from "@/components/ui/empty-state";
 import { ButtonLink } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="app max-w-xl py-20 text-center">
-      <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink-900">
-        We can&rsquo;t find that page
-      </h1>
-      <p className="mt-3 text-ink-600">
-        The listing may have been removed at the organization&rsquo;s request, or the link may be
-        wrong.
-      </p>
-      <div className="mt-6 flex justify-center gap-3">
-        <ButtonLink href="/" size="lg">
-          Browse categories
-        </ButtonLink>
-        <ButtonLink href="/search" variant="secondary" size="lg">
-          Search
-        </ButtonLink>
-      </div>
-      <p className="mt-6 text-sm text-ink-600">
+    <div className="app py-10">
+      <EmptyState
+        icon={<Compass aria-hidden className="size-7" strokeWidth={1.5} />}
+        title="We can't find that page"
+        body="The listing may have been removed at the organization's request, or the link may be wrong."
+        action={
+          <div className="flex flex-col gap-2">
+            <ButtonLink href="/categories">Browse categories</ButtonLink>
+            <ButtonLink href="/search" variant="secondary">
+              Search
+            </ButtonLink>
+          </div>
+        }
+      />
+      <p className="mt-2 text-center text-sm text-ink-600">
         Looking for an organization that should be here?{" "}
         <Link href="/claim" className="font-semibold text-blue-700 underline">
           Claim or add it

@@ -187,3 +187,134 @@ mock, so it cannot drift. Two non-obvious details are documented in its README:
 `next/font`'s self-hosted files have to be swapped for Google Fonts, and iframe
 link clicks have to be intercepted on the capture phase or the frame navigates
 to a URL the capture does not contain and goes blank.
+
+---
+
+## Step 4 — Category listing
+
+Sort and Filters are chips in one sticky rail, with any active filter following
+them as a removable pill. Both open bottom sheets.
+
+**Filters apply on tap, not on submit**, which is what makes the footer count
+honest: "Show 2 results" is the real server count for the filters currently
+set, not an optimistic guess computed in the browser. Verified live — toggling
+Verified moved it 6 → 2 with the list re-rendering behind the sheet.
+
+`router.replace(..., { scroll: false })` keeps the sheet where the thumb left
+it while the server re-renders underneath.
+
+**`BottomSheet` is one component** used by the location picker, sort, filters,
+add-to-list and both gift forms. Drag-to-dismiss is forty lines of pointer
+events rather than a gesture library — this project's whole argument is that it
+costs nothing to run.
+
+## Step 5 — Organization profile
+
+Full-bleed 200px hero with floating circular controls, content sheet riding
+16px up over it, name at 26/800, meta row, then a three-up info strip of EIN,
+founded year and tax status.
+
+**Scroll-spy is the detail that had to be right.** Two things most
+implementations miss: the observer's `rootMargin` has to account for the sticky
+bar's own height or the tab flips a section early, and a tap has to *suspend*
+the spy while the smooth scroll runs or the sections it passes through fight
+the tab you just chose. Both handled; the active tab also scrolls itself into
+view.
+
+**Campaign rows carry a crest, not a photograph.** Campaigns have no image
+field and the schema is out of scope, so the 88px thumbnail is the
+deterministic crest keyed on the campaign id. The brief's layout, without
+inventing a field.
+
+**"I gave" only appears after you copy a handle.** Before that there is nothing
+to confirm, and a confirm button with nothing behind it teaches people to
+ignore it.
+
+**One add-to-list sheet for the whole screen.** Every row's "+" sets a target
+on the same sheet rather than each row carrying its own.
+
+## Step 6 — Search and Categories
+
+The search field writes the query into the URL rather than holding results in
+client state, so search uses the identical server-rendered listing path as
+every other browse surface — same filters, same sort, same ranking, one code
+path to be correct.
+
+An empty search screen offers the category list rather than blank space.
+
+## Step 7 — Giving and Account
+
+The two gift dialogs collapsed into one `GiftFormSheet`. It takes a fixed
+organization (logged straight after a handoff) or lets the donor pick one
+(entered by hand for something given elsewhere) — the same form either way,
+because a ledger that only knows about gifts made through this site is a ledger
+nobody can rely on.
+
+`/history/statement` is deliberately excluded from the tab bar. It is a
+document someone hands their accountant, and app chrome on it is wrong.
+
+## Step 8 — Long tail
+
+Prose pages, request forms, campaign detail, 404 and the kitchen sink.
+
+**The kitchen-sink swatches now read their value from the CSS variable at
+render time** instead of repeating a hex literal, so the gallery cannot drift
+out of sync with `globals.css` the way the hand-typed table did.
+
+## Step 9 — Quality pass
+
+Automated audit across 22 routes at 390×844, checking horizontal overflow,
+elements escaping the viewport, tap targets under 44px, and unlabelled
+interactive elements. Plus a contrast script over every text pairing the design
+actually uses.
+
+### Found and fixed
+
+**Three AA contrast failures, one of them substantive.**
+
+| Pairing | Was | Fix | Now |
+|---|---|---|---|
+| Progress fill on its track | bronze-500 on bronze-100, **2.67:1** | fill → bronze-600 | 4.17:1 |
+| "2x match" pill | white on bronze-500, **3.18:1** | pill → bronze-600 | 4.97:1 |
+| Type on bronze surfaces | bronze-600 on bronze-100, **4.17:1** | type → ink-900 | 15.2:1 |
+
+The progress bar one matters most: at 2.67:1 the filled portion was not
+reliably distinguishable from the track, which is the entire information the
+component carries. **This is a deviation from the brief**, which names
+bronze-500 for the progress fill. bronze-500 keeps the verified badge glyph,
+where it passes the 3:1 an icon needs (3.18:1). Say the word if you would
+rather keep bronze-500 on the fill and accept the miss.
+
+The rule that came out of it, now consistent: **bronze-100 is a surface and
+type on it is ink-900; bronze-600 does the fills, pills and bronze type;
+bronze-500 is the verified badge glyph.** Bronze still appears on exactly the
+three things it is allowed on.
+
+**Six tap targets under 44px.** The heart (32), hero buttons (36), the campaign
+"+" (28), the account avatar (36) and the search clear (32) are all sizes the
+design calls for. Rather than inflate them, a `.tap44` utility stretches the
+*hit* area to 44×44 with a centred pseudo-element. The two rules were never
+actually in conflict.
+
+**A conditional hook.** Hiding the tab bar on the statement route put an early
+`return null` above `useDonor()`. Moved below the hooks.
+
+### Known and accepted
+
+- **Inline category links in the profile meta row are 36×20.** WCAG 2.5.8
+  exempts targets inline in a sentence, and forcing 44px there would break the
+  line. Left as is, deliberately.
+- **`--ink-300` borders are 1.57:1 against white.** Below the 3:1 in WCAG
+  1.4.11, but that criterion covers boundaries *required to identify a
+  control* — these are dividers and card edges, and every control they sit near
+  is identified by its own label and fill. Flagging rather than changing a
+  palette value you specified.
+- **The 404 page logs a 404 in the console.** That is the page returning its own
+  status, not an error.
+
+### Verified
+
+22 routes at 390×844: no horizontal overflow, nothing escaping the viewport, no
+console errors. Full interactive path exercised end to end — location sheet →
+filter sheet with live count → "+" on a campaign row → giving bar → guided
+give-through → gift logged → maaser drew down $10,000 to $9,950.

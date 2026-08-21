@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { RawParams } from "@/lib/search-params";
+import { AppHeader } from "@/components/shell/app-header";
 import { OrgRequestForm } from "@/components/org-request-form";
 
 export const metadata: Metadata = {
@@ -17,10 +18,9 @@ export default async function ClaimPage({
   const org = typeof raw.org === "string" ? raw.org : undefined;
 
   return (
-    <div className="app max-w-2xl py-8">
-      <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
-        Claim your listing
-      </h1>
+    <>
+      <AppHeader back title="Claim your listing" />
+      <div className="app py-5">
       <p className="mt-2 text-sm text-ink-600">
         Most organizations are already here — we seed the directory from the IRS Exempt
         Organizations Business Master File, which is public record. Claiming your stub lets you add
@@ -36,6 +36,8 @@ export default async function ClaimPage({
       <div className="mt-8">
         <OrgRequestForm kind="claim" initialOrgSlug={org} />
       </div>
-    </div>
+        <div className="h-8" />
+      </div>
+    </>
   );
 }

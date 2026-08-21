@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { RawParams } from "@/lib/search-params";
+import { AppHeader } from "@/components/shell/app-header";
 import { OrgRequestForm } from "@/components/org-request-form";
 
 export const metadata: Metadata = {
@@ -16,10 +17,9 @@ export default async function ReportPage({
   const org = typeof raw.org === "string" ? raw.org : undefined;
 
   return (
-    <div className="app max-w-2xl py-8">
-      <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
-        Report a problem with a listing
-      </h1>
+    <>
+      <AppHeader back title="Report a listing" />
+      <div className="app py-5">
       <p className="mt-2 text-sm text-ink-600">
         Wrong details, a payment handle that looks off, an organization that no longer exists, or
         something that looks like an impersonation. Reports about payment details are looked at
@@ -29,6 +29,8 @@ export default async function ReportPage({
       <div className="mt-8">
         <OrgRequestForm kind="abuse" initialOrgSlug={org} />
       </div>
-    </div>
+        <div className="h-8" />
+      </div>
+    </>
   );
 }

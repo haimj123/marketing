@@ -58,7 +58,7 @@ export function OrgCard({
           />
 
           {matching && (
-            <span className="absolute bottom-2 left-2 rounded-pill bg-bronze-500 px-2 py-1 text-xs font-bold leading-none text-white">
+            <span className="absolute bottom-2 left-2 rounded-pill bg-bronze-600 px-2 py-1 text-xs font-bold leading-none text-white">
               {campaign?.matchMultiplier}x match
             </span>
           )}

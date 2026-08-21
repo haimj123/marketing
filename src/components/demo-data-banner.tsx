@@ -9,7 +9,7 @@ import { Info } from "lucide-react";
 export function DemoDataBanner() {
   return (
     <div className="bg-bronze-100 print:hidden">
-      <p className="app flex items-center gap-1.5 py-1.5 text-2xs leading-tight text-bronze-600">
+      <p className="app flex items-center gap-1.5 py-1.5 text-2xs leading-tight text-ink-900">
         <Info aria-hidden className="size-3.5 shrink-0" />
         <span className="truncate">
           <strong className="font-bold">Sample data</strong> — every listing here is fictional.

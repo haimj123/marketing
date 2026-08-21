@@ -48,7 +48,7 @@ export function MaaserRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--color-bronze-500)"
+          stroke="var(--color-bronze-600)"
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={circumference}

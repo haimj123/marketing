@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { RawParams } from "@/lib/search-params";
+import { AppHeader } from "@/components/shell/app-header";
 import { OrgRequestForm } from "@/components/org-request-form";
 
 export const metadata: Metadata = {
@@ -16,10 +17,9 @@ export default async function RequestRemovalPage({
   const org = typeof raw.org === "string" ? raw.org : undefined;
 
   return (
-    <div className="app max-w-2xl py-8">
-      <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
-        Request removal
-      </h1>
+    <>
+      <AppHeader back title="Request removal" />
+      <div className="app py-5">
       <p className="mt-2 text-sm text-ink-600">
         Publishing the IRS public record is lawful, but it is not compulsory for us to keep doing
         it. If you represent an organization and would rather not be listed, say so here and we
@@ -29,6 +29,8 @@ export default async function RequestRemovalPage({
       <div className="mt-8">
         <OrgRequestForm kind="removal" initialOrgSlug={org} />
       </div>
-    </div>
+        <div className="h-8" />
+      </div>
+    </>
   );
 }

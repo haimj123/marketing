@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { RawParams } from "@/lib/search-params";
 
+/** Only appears when a listing genuinely runs past one page. */
 export function Pagination({
   page,
   totalPages,
@@ -26,11 +27,11 @@ export function Pagination({
   }
 
   return (
-    <nav aria-label="Pagination" className="mt-8 flex items-center justify-between gap-4">
+    <nav aria-label="Pagination" className="mt-6 flex items-center justify-between gap-3">
       {page > 1 ? (
         <Link
           href={href(page - 1)}
-          className="inline-flex h-10 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-blue-700 hover:bg-blue-050"
+          className="press flex h-11 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-ink-900"
         >
           Previous
         </Link>
@@ -38,12 +39,12 @@ export function Pagination({
         <span />
       )}
       <p className="tabular text-sm text-ink-600">
-        Page {page} of {totalPages}
+        {page} of {totalPages}
       </p>
       {page < totalPages ? (
         <Link
           href={href(page + 1)}
-          className="inline-flex h-10 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-blue-700 hover:bg-blue-050"
+          className="press flex h-11 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-ink-900"
         >
           Next
         </Link>

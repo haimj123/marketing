@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { FavoritesList } from "@/components/favorites-list";
+import { AppHeader } from "@/components/shell/app-header";
+import { FavoritesList } from "@/components/giving/favorites-list";
 
 export const metadata: Metadata = {
   title: "Favorites",
@@ -8,14 +9,9 @@ export const metadata: Metadata = {
 
 export default function FavoritesPage() {
   return (
-    <div className="app py-8">
-      <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
-        Favorites
-      </h1>
-      <p className="mt-2 text-sm text-ink-600">Saved on this device.</p>
-      <div className="mt-8">
-        <FavoritesList />
-      </div>
-    </div>
+    <>
+      <AppHeader back title="Favorites" />
+      <FavoritesList />
+    </>
   );
 }

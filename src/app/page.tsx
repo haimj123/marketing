@@ -38,7 +38,7 @@ export default function HomePage() {
           <Link
             href="/account"
             aria-label="Account"
-            className="press flex size-9 shrink-0 items-center justify-center rounded-full bg-ink-050 text-ink-900"
+            className="press tap44 flex size-9 shrink-0 items-center justify-center rounded-full bg-ink-050 text-ink-900"
           >
             <UserRound aria-hidden className="size-5" />
           </Link>
