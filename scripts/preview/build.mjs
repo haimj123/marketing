@@ -215,11 +215,11 @@ const page = `<title>Shaare Tzadaka Redesign</title>
 
 <div class="wrap">
   <div>
-    <p class="eyebrow">Uber Eats redesign · steps 0–3</p>
+    <p class="eyebrow">Uber Eats redesign · complete</p>
     <h1>Shaare Tzadaka</h1>
     <p class="lede">
-      Real screens, captured from the running app at 390&nbsp;px. Tap the bottom tab bar inside the
-      phone to move between screens.
+      Every screen, captured from the running app at 390&nbsp;px. Tap the bottom tab bar inside the
+      phone to move around, or pick a screen from the list.
     </p>
 
     <ul class="picker" id="picker"></ul>
@@ -248,8 +248,8 @@ const page = `<title>Shaare Tzadaka Redesign</title>
   var current = DATA.screens[0].id;
 
   var CAPTIONS = {
-    done: "Redesigned in this pass.",
-    pending: "Still the original build — this screen is scheduled for a later step."
+    done: "Redesigned.",
+    pending: "Still the original build."
   };
 
   function srcdocFor(screen) {

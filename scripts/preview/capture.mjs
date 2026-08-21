@@ -2,16 +2,21 @@ import { chromium } from "playwright-core";
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-const BASE = process.env.BASE ?? "http://localhost:3601";
+const BASE = process.env.BASE ?? "http://localhost:3802";
 const ROOT = process.env.ROOT ?? "/home/user/marketing";
 
 const SCREENS = [
   { id: "home", route: "/", label: "Home", state: "done" },
   { id: "categories", route: "/categories", label: "Categories", state: "done" },
   { id: "account", route: "/account", label: "Account", state: "done" },
-  { id: "category", route: "/c/food", label: "Food & Shabbos", state: "pending" },
-  { id: "org", route: "/org/ezras-shabbos-network", label: "Organization", state: "pending" },
-  { id: "giving", route: "/giving-list", label: "Giving list", state: "pending" },
+  { id: "category", route: "/c/food", label: "Category listing", state: "done" },
+  { id: "org", route: "/org/ezras-shabbos-network", label: "Organization", state: "done" },
+  { id: "unclaimed", route: "/org/bais-yaakov-of-the-heights", label: "Unclaimed stub", state: "done" },
+  { id: "campaign", route: "/org/ezras-shabbos-network/campaign/yom-tov-drive", label: "Campaign", state: "done" },
+  { id: "search", route: "/search", label: "Search", state: "done" },
+  { id: "giving", route: "/giving-list", label: "Giving list", state: "done" },
+  { id: "maaser", route: "/maaser", label: "Maaser tracker", state: "done" },
+  { id: "kitchen", route: "/kitchen-sink", label: "Kitchen sink", state: "done" },
 ];
 
 const browser = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium" });
