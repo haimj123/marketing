@@ -29,7 +29,15 @@ const ICONS: Record<string, LucideIcon> = {
   Globe,
 };
 
-export function CategoryIcon({ iconKey, className }: { iconKey: string; className?: string }) {
+export function CategoryIcon({
+  iconKey,
+  className,
+  strokeWidth,
+}: {
+  iconKey: string;
+  className?: string;
+  strokeWidth?: number;
+}) {
   const Icon = ICONS[iconKey] ?? Sparkles;
-  return <Icon aria-hidden className={className} />;
+  return <Icon aria-hidden className={className} strokeWidth={strokeWidth} />;
 }

@@ -108,8 +108,8 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
           name={name}
           heroUrl={org.heroUrl}
           categorySlug={org.categorySlugs[0]}
-          large
-          className={unclaimed ? "opacity-40 saturate-50" : undefined}
+          unclaimed={unclaimed}
+          size="hero"
         />
       </div>
 

@@ -112,3 +112,78 @@ hand-heart holds up.
 
 390×844, all five tabs: no horizontal overflow, no console errors, the fixed
 bar never covers content, active state correct on each tab.
+
+---
+
+## Step 2 — Organization card
+
+Structure is the brief's: image full-bleed with 8px radius on all four corners,
+text block beneath at 12px, **no border and no shadow around the card**. That
+last part is what makes a feed read as a list rather than a stack of boxes, and
+it is the detail most "card" components get wrong.
+
+**The heart sits outside the `<Link>`.** Nesting a button inside an anchor is
+invalid HTML and, worse, means a save can also navigate. It is absolutely
+positioned over the image instead, and still calls `preventDefault` so a stray
+event cannot bubble.
+
+**`CardProgress` is a second component, not a prop.** The full `ProgressBar`
+refuses to render without its "as reported by the organization, N days ago"
+line — that rule is load-bearing, because none of these figures come from a
+transaction. The card has no room for it.
+
+Deviation, and the reasoning: the card shows `62% of $50,000` clean while the
+figure is fresh, and appends `· updated 2 months ago` in `--warning` once it is
+over 30 days old. A fresh number gets the tight row the brief asks for; a stale
+one cannot hide on the browse surface waiting for someone to open the profile.
+The full timestamp is in the progressbar's `aria-label` either way.
+
+**Three image states, deliberately different.** A photograph when the
+organization has uploaded one; a deterministic crest — initials over a blue
+field, category glyph behind — when it is claimed but has not; flat `--ink-050`
+with a building glyph when it is unclaimed. The unclaimed plate is quiet on
+purpose: an IRS stub should never look as finished as a maintained profile.
+
+**Rail cards drop the category from the meta row.** At 168px, three meta items
+truncate mid-word every time. The city survives, because that is what a donor
+scans a rail for.
+
+## Step 3 — Home
+
+**The location chip replaces the delivery address**, and the parallel is exact:
+local giving is usually the first call, and a food program two towns over is one
+you can go and look at yourself.
+
+**The search bar is a link, not an input.** Tapping it opens the search screen,
+as a delivery app does. Home stays a server component, and the first tap lands
+somewhere built for searching instead of a keyboard covering a feed.
+
+**Filter chips navigate rather than filter in place.** On a delivery app the
+chips filter one list. Here the feed is composed of editorial sections, so a
+chip takes you to the filtered list on `/search` instead of silently
+rearranging the page under your thumb. The filtering is the existing URL-param
+path — no new query, no new endpoint. "Near me" needs a location first and says
+so rather than failing quietly.
+
+**Rails run full-bleed on purpose.** The clipped last card is the only
+affordance telling a thumb the row scrolls; a rail that ends flush inside the
+gutter reads as a finished grid.
+
+### Fixed during the step
+
+**Section titles were `<span>`s.** Caught it when a screenshot script could not
+find "Browse all" by role. They are `<h2>` now — a screen reader needs the
+section list, and a heading that is not a heading is invisible to it.
+
+### Verified
+
+390×844: no horizontal overflow, no console errors, tab bar clear of content.
+
+## Preview harness
+
+`scripts/preview/` builds a shareable single-file preview by capturing the
+rendered DOM and stylesheets from a running build — never a hand-maintained
+mock, so it cannot drift. Two non-obvious details are documented in its README:
+`next/font`'s self-hosted files have to be swapped for Google Fonts, and iframe
+link clicks have to be intercepted on the capture phase or the frame navigates
+to a URL the capture does not contain and goes blank.

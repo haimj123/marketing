@@ -1,14 +1,20 @@
+import { Building2 } from "lucide-react";
 import { CategoryIcon } from "./category-icon";
 import { CATEGORY_BY_SLUG } from "@/lib/categories";
 import { cn } from "@/lib/cn";
 
 /**
- * Most listings arrive from the IRS with no imagery at all, and a broken
- * image placeholder on four fifths of the directory would read as neglect.
- * So an org without a hero gets a deterministic crest instead: its initials
- * over a blue field, with the primary category's glyph behind. It looks
- * intentional, and it makes a claimed profile's real photograph feel like an
- * upgrade rather than the baseline.
+ * Most listings arrive from the IRS with no imagery at all, so this component
+ * carries more weight here than a photo slot would on a delivery app.
+ *
+ * Three states, deliberately different:
+ *   heroUrl        → the organization's own photograph.
+ *   claimed, none  → a deterministic crest: initials over a blue field with
+ *                    the category glyph behind. Reads as designed, not broken,
+ *                    and makes a real photo feel like an upgrade.
+ *   unclaimed      → flat --ink-050 with a building glyph. Quiet on purpose:
+ *                    an IRS stub should never look as finished as a profile
+ *                    somebody maintains.
  */
 function initials(name: string): string {
   const words = name
@@ -38,19 +44,38 @@ export function OrgImage({
   name,
   heroUrl,
   categorySlug,
+  unclaimed,
   className,
-  large,
+  size = "card",
 }: {
   slug: string;
   name: string;
   heroUrl?: string | null;
   categorySlug?: string;
+  unclaimed?: boolean;
   className?: string;
-  large?: boolean;
+  size?: "card" | "rail" | "hero" | "thumb";
 }) {
   if (heroUrl) {
     // eslint-disable-next-line @next/next/no-img-element -- arbitrary org-supplied host
     return <img src={heroUrl} alt="" className={cn("size-full object-cover", className)} />;
+  }
+
+  if (unclaimed) {
+    return (
+      <div
+        aria-hidden
+        className={cn(
+          "flex size-full items-center justify-center bg-ink-050 text-ink-300",
+          className,
+        )}
+      >
+        <Building2
+          className={size === "hero" ? "size-16" : size === "thumb" ? "size-7" : "size-10"}
+          strokeWidth={1.5}
+        />
+      </div>
+    );
   }
 
   const field = FIELDS[hash(slug) % FIELDS.length];
@@ -69,15 +94,22 @@ export function OrgImage({
         <CategoryIcon
           iconKey={category.iconKey}
           className={cn(
-            "absolute -bottom-4 -right-3 opacity-20",
-            large ? "size-40" : "size-24",
+            "absolute opacity-20",
+            size === "hero" && "-bottom-8 -right-6 size-56",
+            size === "card" && "-bottom-5 -right-4 size-32",
+            size === "rail" && "-bottom-4 -right-3 size-24",
+            size === "thumb" && "-bottom-2 -right-2 size-12",
           )}
+          strokeWidth={1.5}
         />
       )}
       <span
         className={cn(
           "relative font-display font-extrabold tracking-tight",
-          large ? "text-4xl" : "text-2xl",
+          size === "hero" && "text-4xl",
+          size === "card" && "text-2xl",
+          size === "rail" && "text-xl",
+          size === "thumb" && "text-sm",
         )}
       >
         {initials(name)}

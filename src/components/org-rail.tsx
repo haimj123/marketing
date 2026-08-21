@@ -1,26 +1,35 @@
 import { OrgCard } from "./org-card";
 import type { OrgListItem } from "@/lib/data";
 
+/**
+ * The horizontal carousel. 168px cards, and the rail runs full-bleed to the
+ * screen edge on purpose so the last card is visibly cut off — that is the
+ * only affordance telling a thumb there is more to the right.
+ */
 export function OrgRail({ orgs, showDistance }: { orgs: OrgListItem[]; showDistance?: boolean }) {
   return (
-    <ul className="rail -mx-4 px-4 pb-2 md:-mx-6 md:px-6">
+    <ul className="rail bleed pb-1">
       {orgs.map((org) => (
-        <li key={org.slug} className="w-[300px]">
-          <OrgCard org={org} showDistance={showDistance} className="h-full" />
+        <li key={org.slug} className="w-[168px]">
+          <OrgCard org={org} variant="rail" showDistance={showDistance} />
         </li>
       ))}
     </ul>
   );
 }
 
-export function OrgGrid({ orgs, showDistance }: { orgs: OrgListItem[]; showDistance?: boolean }) {
+/** The vertical feed. 20px between cards. */
+export function OrgFeed({ orgs, showDistance }: { orgs: OrgListItem[]; showDistance?: boolean }) {
   return (
-    <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
+    <ul className="space-y-5">
       {orgs.map((org) => (
         <li key={org.slug}>
-          <OrgCard org={org} showDistance={showDistance} className="h-full" />
+          <OrgCard org={org} showDistance={showDistance} />
         </li>
       ))}
     </ul>
   );
 }
+
+/** Kept as an alias so screens not yet redesigned keep compiling. */
+export const OrgGrid = OrgFeed;
