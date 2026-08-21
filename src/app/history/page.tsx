@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function HistoryPage() {
   return (
-    <div className="page max-w-4xl py-8">
+    <div className="app max-w-4xl py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Giving history
       </h1>

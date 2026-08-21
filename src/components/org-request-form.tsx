@@ -157,10 +157,10 @@ export function OrgRequestForm({
             <p className="tabular mt-1 text-sm text-ink-600">
               Reference <span className="font-semibold text-ink-900">{done.id}</span>
             </p>
-            <p className="mt-3 rounded-[8px] bg-ink-050 p-3 text-sm text-ink-600">{done.note}</p>
+            <p className="mt-3 rounded-card bg-ink-050 p-3 text-sm text-ink-600">{done.note}</p>
             <p className="mt-3 text-sm text-ink-600">
               Requests are reviewed by hand in the{" "}
-              <Link href="/admin" className="font-semibold text-brand-700 underline">
+              <Link href="/admin" className="font-semibold text-blue-700 underline">
                 admin queue
               </Link>
               . Removal requests are honored quickly and without argument.
@@ -177,7 +177,7 @@ export function OrgRequestForm({
         <label className="block">
           <span className="mb-1 block text-sm font-semibold text-ink-900">Organization</span>
           {org ? (
-            <div className="flex items-center justify-between gap-3 rounded-[8px] border border-brand-700 bg-brand-050 px-4 py-3">
+            <div className="flex items-center justify-between gap-3 rounded-card border border-blue-700 bg-blue-050 px-4 py-3">
               <span>
                 <span className="block font-semibold text-ink-900">
                   {org.dba ?? org.legalName}
@@ -192,7 +192,7 @@ export function OrgRequestForm({
                   setOrg(null);
                   setQuery("");
                 }}
-                className="text-sm font-semibold text-brand-700 underline underline-offset-2"
+                className="text-sm font-semibold text-blue-700 underline underline-offset-2"
               >
                 Change
               </button>
@@ -203,13 +203,13 @@ export function OrgRequestForm({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name, city or EIN"
-              className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+              className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
             />
           )}
         </label>
 
         {hits.length > 0 && !org && (
-          <ul className="mt-2 overflow-hidden rounded-[8px] border border-ink-300">
+          <ul className="mt-2 overflow-hidden rounded-card border border-ink-300">
             {hits.map((hit) => (
               <li key={hit.slug}>
                 <button
@@ -232,7 +232,7 @@ export function OrgRequestForm({
             How will you prove you represent this organization?
           </legend>
           {available.length === 0 ? (
-            <p className="rounded-[8px] bg-ink-050 p-3 text-sm text-ink-600">
+            <p className="rounded-card bg-ink-050 p-3 text-sm text-ink-600">
               This listing has no contact details on its public record, so there is nothing we can
               send a code to. Submit the form and a person will work it out with you — expect to be
               asked for something on the organization&rsquo;s letterhead.
@@ -266,7 +266,7 @@ export function OrgRequestForm({
             value={name}
             onChange={(e) => setName(e.target.value)}
             maxLength={120}
-            className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
           />
         </label>
         <label className="block">
@@ -277,7 +277,7 @@ export function OrgRequestForm({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             maxLength={200}
-            className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
           />
         </label>
       </div>
@@ -293,7 +293,7 @@ export function OrgRequestForm({
             onChange={(e) => setRole(e.target.value)}
             maxLength={120}
             placeholder="Director, gabbai, board member…"
-            className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
           />
         </label>
       )}
@@ -313,12 +313,12 @@ export function OrgRequestForm({
           required={kind !== "claim"}
           rows={4}
           maxLength={2000}
-          className="w-full rounded-[8px] border border-ink-300 p-3 text-base outline-none focus:border-brand-500"
+          className="w-full rounded-card border border-ink-300 p-3 text-base outline-none focus:border-blue-500"
         />
       </label>
 
       {error && (
-        <p role="alert" className="rounded-[8px] bg-red-50 p-3 text-sm text-danger">
+        <p role="alert" className="rounded-card bg-red-50 p-3 text-sm text-danger">
           {error}
         </p>
       )}

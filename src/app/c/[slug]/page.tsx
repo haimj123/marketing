@@ -62,9 +62,9 @@ export default async function CategoryPage({
   const rows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="page py-8">
+    <div className="app py-8">
       <div className="flex items-start gap-4">
-        <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-brand-050 text-brand-700">
+        <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-blue-050 text-blue-700">
           <CategoryIcon iconKey={category.iconKey} className="size-6" />
         </span>
         <div>

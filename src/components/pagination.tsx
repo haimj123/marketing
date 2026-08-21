@@ -30,7 +30,7 @@ export function Pagination({
       {page > 1 ? (
         <Link
           href={href(page - 1)}
-          className="inline-flex h-10 items-center rounded-[8px] border border-ink-300 px-4 text-sm font-semibold text-brand-700 hover:bg-brand-050"
+          className="inline-flex h-10 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-blue-700 hover:bg-blue-050"
         >
           Previous
         </Link>
@@ -43,7 +43,7 @@ export function Pagination({
       {page < totalPages ? (
         <Link
           href={href(page + 1)}
-          className="inline-flex h-10 items-center rounded-[8px] border border-ink-300 px-4 text-sm font-semibold text-brand-700 hover:bg-brand-050"
+          className="inline-flex h-10 items-center rounded-card border border-ink-300 px-4 text-sm font-semibold text-blue-700 hover:bg-blue-050"
         >
           Next
         </Link>

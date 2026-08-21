@@ -20,14 +20,33 @@ import type { Gift, GivingListItem, MaaserSettings } from "./types";
 
 const KEY = "shaare-tzadaka:donor:v1";
 
+export interface DonorCity {
+  label: string;
+  lat: number;
+  lng: number;
+}
+
 export interface DonorState {
   gifts: Gift[];
   givingList: GivingListItem[];
   favorites: string[];
   maaser: MaaserSettings | null;
+  /**
+   * Where the donor says they are, for the location chip and distance sort.
+   * Device-only: `donor_profiles.city` in Postgres is untouched, and a
+   * coordinate is never sent anywhere except the nearby endpoint, which does
+   * not log it.
+   */
+  city: DonorCity | null;
 }
 
-const EMPTY: DonorState = { gifts: [], givingList: [], favorites: [], maaser: null };
+const EMPTY: DonorState = {
+  gifts: [],
+  givingList: [],
+  favorites: [],
+  maaser: null,
+  city: null,
+};
 
 function read(): DonorState {
   if (typeof window === "undefined") return EMPTY;
@@ -40,6 +59,7 @@ function read(): DonorState {
       givingList: parsed.givingList ?? [],
       favorites: parsed.favorites ?? [],
       maaser: parsed.maaser ?? null,
+      city: parsed.city ?? null,
     };
   } catch {
     return EMPTY;
@@ -71,6 +91,7 @@ interface DonorContextValue extends DonorState {
   removeGift: (id: string) => void;
   toggleFavorite: (slug: string) => void;
   setMaaser: (settings: MaaserSettings | null) => void;
+  setCity: (city: DonorCity | null) => void;
 }
 
 const DonorContext = React.createContext<DonorContextValue | null>(null);
@@ -152,6 +173,7 @@ export function DonorProvider({ children }: { children: React.ReactNode }) {
             : [...prev.favorites, slug],
         })),
       setMaaser: (settings) => update((prev) => ({ ...prev, maaser: settings })),
+      setCity: (city) => update((prev) => ({ ...prev, city })),
     }),
     [state, ready, update],
   );

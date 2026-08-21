@@ -12,6 +12,7 @@ const ToastContext = React.createContext<((message: string, tone?: Toast["tone"]
   null,
 );
 
+/** Slides up from just above the tab bar, dark fill, auto-dismiss at 3s. */
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = React.useState<Toast[]>([]);
   const seq = React.useRef(0);
@@ -19,7 +20,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   const push = React.useCallback((message: string, tone: Toast["tone"] = "default") => {
     const id = ++seq.current;
     setToasts((t) => [...t, { id, message, tone }]);
-    window.setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 3200);
+    window.setTimeout(() => setToasts((t) => t.filter((x) => x.id !== id)), 3000);
   }, []);
 
   return (
@@ -28,12 +29,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
       <div
         aria-live="polite"
         aria-atomic="false"
-        className="pointer-events-none fixed inset-x-0 bottom-4 z-50 flex flex-col items-center gap-2 px-4"
+        className="pointer-events-none fixed inset-x-0 bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+12px)] z-50 flex flex-col items-center gap-2 px-4"
       >
         {toasts.map((t) => (
           <div
             key={t.id}
-            className="pointer-events-auto max-w-sm rounded-[8px] bg-ink-900 px-4 py-3 text-sm font-medium text-white shadow-lg"
+            style={{ animation: "toast-in 200ms ease-out" }}
+            className="pointer-events-auto w-full max-w-[calc(var(--container-app)-32px)] rounded-card bg-ink-900 px-4 py-3 text-sm font-medium text-white shadow-toast"
           >
             {t.message}
           </div>

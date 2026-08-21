@@ -17,7 +17,7 @@ export default async function ClaimPage({
   const org = typeof raw.org === "string" ? raw.org : undefined;
 
   return (
-    <div className="page max-w-2xl py-8">
+    <div className="app max-w-2xl py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Claim your listing
       </h1>
@@ -27,7 +27,7 @@ export default async function ClaimPage({
         your departments, campaigns and payment details, and turns off the unclaimed banner.
       </p>
 
-      <ul className="mt-6 space-y-2 rounded-[8px] bg-brand-050 p-5 text-sm text-brand-900">
+      <ul className="mt-6 space-y-2 rounded-card bg-blue-050 p-5 text-sm text-blue-900">
         <li>· Free. There is no listing fee, no subscription and no paid placement.</li>
         <li>· We never receive your donations — donors pay you directly, through your own rails.</li>
         <li>· You can ask us to remove the listing entirely instead, and we will.</li>

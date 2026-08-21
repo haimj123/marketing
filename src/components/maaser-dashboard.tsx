@@ -23,7 +23,7 @@ export function MaaserDashboard() {
   const [logging, setLogging] = React.useState(false);
 
   if (!ready) {
-    return <div className="h-72 animate-pulse rounded-[16px] bg-ink-050" aria-hidden />;
+    return <div className="h-72 animate-pulse rounded-sheet bg-ink-050" aria-hidden />;
   }
 
   if (!maaser) {
@@ -82,7 +82,7 @@ export function MaaserDashboard() {
             {recent.length === 0 ? (
               <p className="mt-2 text-sm text-ink-600">
                 Nothing logged yet this year.{" "}
-                <Link href="/" className="font-semibold text-brand-700 underline">
+                <Link href="/" className="font-semibold text-blue-700 underline">
                   Find an organization
                 </Link>{" "}
                 and log the gift when you send it.
@@ -127,7 +127,7 @@ export function MaaserDashboard() {
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-[8px] border border-ink-300 p-4">
+    <div className="rounded-card border border-ink-300 p-4">
       <dt className="text-xs font-semibold uppercase tracking-wide text-ink-600">{label}</dt>
       <dd className="tabular mt-1 font-display text-lg font-bold text-ink-900">
         {value}
@@ -139,7 +139,7 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
 
 function SetupCard({ onSave }: { onSave: (s: MaaserSettings) => void }) {
   return (
-    <div className="rounded-[16px] border border-ink-300 p-6 md:p-8">
+    <div className="rounded-sheet border border-ink-300 p-6 md:p-8">
       <h2 className="font-display text-xl font-bold text-ink-900">Set up your maaser tracker</h2>
       <p className="mt-2 max-w-2xl text-sm text-ink-600">
         Enter your income and the percentage you give. We work out the obligation and draw it down
@@ -205,7 +205,7 @@ function SettingsForm({
     <form onSubmit={submit} className="space-y-4">
       <label className="block">
         <span className="mb-1 block text-sm font-semibold text-ink-900">Annual income</span>
-        <div className="flex h-12 items-center rounded-[8px] border border-ink-300 px-3 focus-within:border-brand-500">
+        <div className="flex h-12 items-center rounded-card border border-ink-300 px-3 focus-within:border-blue-500">
           <span className="mr-1 text-ink-600">$</span>
           <input
             type="text"
@@ -256,7 +256,7 @@ function SettingsForm({
         <select
           value={yearStart}
           onChange={(e) => setYearStart(e.target.value)}
-          className="h-12 w-full rounded-[8px] border border-ink-300 bg-white px-3 text-base outline-none focus:border-brand-500"
+          className="h-12 w-full rounded-card border border-ink-300 bg-white px-3 text-base outline-none focus:border-blue-500"
         >
           <option value="01-01">1 January</option>
           <option value="04-01">1 April</option>

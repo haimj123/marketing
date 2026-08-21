@@ -8,7 +8,7 @@ import { FileText } from "lucide-react";
  */
 export function UnclaimedBanner({ orgSlug, legalName }: { orgSlug: string; legalName: string }) {
   return (
-    <div className="rounded-[8px] border border-ink-300 bg-ink-050 p-5">
+    <div className="rounded-card border border-ink-300 bg-ink-050 p-5">
       <div className="flex items-start gap-3">
         <FileText aria-hidden className="mt-0.5 size-5 shrink-0 text-ink-600" />
         <div>
@@ -24,13 +24,13 @@ export function UnclaimedBanner({ orgSlug, legalName }: { orgSlug: string; legal
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
               href={`/claim?org=${orgSlug}`}
-              className="inline-flex h-10 items-center rounded-[8px] bg-brand-700 px-4 text-sm font-semibold text-white hover:bg-brand-900"
+              className="inline-flex h-10 items-center rounded-card bg-blue-700 px-4 text-sm font-semibold text-white hover:bg-blue-900"
             >
               Claim this profile
             </Link>
             <Link
               href={`/request-removal?org=${orgSlug}`}
-              className="inline-flex h-10 items-center rounded-[8px] border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-900 hover:border-ink-600"
+              className="inline-flex h-10 items-center rounded-card border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-900 hover:border-ink-600"
             >
               Request removal
             </Link>

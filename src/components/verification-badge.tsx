@@ -19,7 +19,7 @@ const ICON = {
 const TONE: Record<VerificationLevel, string> = {
   unverified: "bg-ink-050 text-ink-600 border-ink-300",
   irs_listed: "bg-ink-050 text-ink-600 border-ink-300",
-  claimed: "bg-brand-050 text-brand-700 border-brand-050",
+  claimed: "bg-blue-050 text-blue-700 border-blue-050",
   claim_verified: "bg-bronze-100 text-bronze-600 border-bronze-100",
   endorsed: "bg-bronze-100 text-bronze-600 border-bronze-500",
 };

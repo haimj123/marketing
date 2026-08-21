@@ -24,7 +24,7 @@ export function YearEndStatement() {
   const [year, setYear] = React.useState<number | null>(null);
   const active = year ?? years[0] ?? new Date().getUTCFullYear();
 
-  if (!ready) return <div className="h-64 animate-pulse rounded-[8px] bg-ink-050" aria-hidden />;
+  if (!ready) return <div className="h-64 animate-pulse rounded-card bg-ink-050" aria-hidden />;
 
   const rows = gifts
     .filter((g) => new Date(g.givenAt).getUTCFullYear() === active)
@@ -51,7 +51,7 @@ export function YearEndStatement() {
           <select
             value={active}
             onChange={(e) => setYear(Number(e.target.value))}
-            className="h-10 rounded-[8px] border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
+            className="h-10 rounded-card border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
           >
             {years.map((y) => (
               <option key={y} value={y}>
@@ -66,7 +66,7 @@ export function YearEndStatement() {
         </Button>
       </div>
 
-      <article className="rounded-[8px] border border-ink-300 p-6 print:border-0 print:p-0">
+      <article className="rounded-card border border-ink-300 p-6 print:border-0 print:p-0">
         <header className="border-b border-ink-300 pb-4">
           <h2 className="font-display text-xl font-extrabold text-ink-900">
             Charitable giving statement — {active}

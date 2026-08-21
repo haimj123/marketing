@@ -46,7 +46,7 @@ export function NearYou({ cities }: { cities: City[] }) {
           <button
             type="button"
             onClick={() => setState({ kind: "denied" })}
-            className="font-semibold text-brand-700 underline underline-offset-2"
+            className="font-semibold text-blue-700 underline underline-offset-2"
           >
             Change
           </button>
@@ -64,7 +64,7 @@ export function NearYou({ cities }: { cities: City[] }) {
   }
 
   return (
-    <div className="rounded-[8px] border border-ink-300 bg-ink-050 p-6">
+    <div className="rounded-card border border-ink-300 bg-ink-050 p-6">
       <p className="text-sm text-ink-900">
         Local giving is usually the first call — a food program two towns over is one you can check
         on yourself.

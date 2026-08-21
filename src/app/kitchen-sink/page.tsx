@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 };
 
 const SWATCHES: { name: string; token: string; note?: string }[] = [
-  { name: "brand-900", token: "#062B5C" },
-  { name: "brand-700", token: "#0A3D91", note: "primary buttons" },
-  { name: "brand-500", token: "#1157C4", note: "links, focus rings" },
-  { name: "brand-050", token: "#EDF3FC" },
+  { name: "blue-900", token: "#062B5C" },
+  { name: "blue-700", token: "#0A3D91", note: "primary buttons" },
+  { name: "blue-500", token: "#1157C4", note: "links, focus rings" },
+  { name: "blue-050", token: "#EDF3FC" },
   { name: "bronze-600", token: "#8C6A34", note: "bronze type ≤16px" },
   { name: "bronze-500", token: "#B08A4F", note: "badge, progress fill" },
   { name: "bronze-100", token: "#F4EADA" },
@@ -41,7 +41,7 @@ export default function KitchenSinkPage() {
   const unclaimed = orgs.find((o) => o.claimStatus === "unclaimed");
 
   return (
-    <div className="page max-w-4xl space-y-14 py-10">
+    <div className="app max-w-4xl space-y-14 py-10">
       <header>
         <h1 className="font-display text-3xl font-extrabold tracking-tight text-ink-900">
           Kitchen sink
@@ -56,7 +56,7 @@ export default function KitchenSinkPage() {
         <h2 className="mb-4 font-display text-xl font-bold">Colour</h2>
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {SWATCHES.map((s) => (
-            <li key={s.name} className="overflow-hidden rounded-[8px] border border-ink-300">
+            <li key={s.name} className="overflow-hidden rounded-card border border-ink-300">
               <div className="h-14" style={{ background: s.token }} />
               <div className="p-2">
                 <p className="font-mono text-xs font-semibold text-ink-900">{s.name}</p>

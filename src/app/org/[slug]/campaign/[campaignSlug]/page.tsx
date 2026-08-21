@@ -67,10 +67,10 @@ export default async function CampaignPage({
   const closed = ended || status === "complete" || status === "archived";
 
   return (
-    <div className="page max-w-3xl py-8">
+    <div className="app max-w-3xl py-8">
       <Link
         href={`/org/${org.slug}`}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline"
+        className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:underline"
       >
         <ArrowLeft aria-hidden className="size-4" />
         {name}
@@ -99,7 +99,7 @@ export default async function CampaignPage({
       )}
 
       {campaign.goalCents ? (
-        <div className="mt-6 rounded-[8px] border border-ink-300 p-5">
+        <div className="mt-6 rounded-card border border-ink-300 p-5">
           <ProgressBar
             raisedCents={campaign.raisedCents}
             goalCents={campaign.goalCents}
@@ -139,9 +139,9 @@ export default async function CampaignPage({
       )}
 
       {closed ? (
-        <p className="mt-6 rounded-[8px] bg-ink-050 p-4 text-sm text-ink-600">
+        <p className="mt-6 rounded-card bg-ink-050 p-4 text-sm text-ink-600">
           This campaign is no longer open. You can still give to {name} generally from{" "}
-          <Link href={`/org/${org.slug}`} className="font-semibold text-brand-700 underline">
+          <Link href={`/org/${org.slug}`} className="font-semibold text-blue-700 underline">
             its profile
           </Link>
           .

@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Frank_Ruhl_Libre, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { BottomTabBar } from "@/components/shell/bottom-tab-bar";
 import { DemoDataBanner } from "@/components/demo-data-banner";
 import { DonorProvider } from "@/lib/donor-store";
 import { ToastProvider } from "@/components/ui/toast";
@@ -46,10 +45,16 @@ export const metadata: Metadata = {
     url: siteUrl,
   },
   robots: { index: true, follow: true },
+  appleWebApp: { capable: true, title: "Shaare Tzadaka", statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
+  // Next serialises this into a meta tag, so it cannot read a CSS variable.
+  // It is --blue-900. Change both together.
   themeColor: "#062B5C",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -58,19 +63,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${jakarta.variable} ${inter.variable} ${frankRuhl.variable}`}
     >
-      <body className="min-h-dvh bg-white antialiased">
+      <body className="min-h-dvh bg-ink-050">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-[8px] focus:bg-brand-700 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-card focus:bg-blue-700 focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>
+
         <ToastProvider>
           <DonorProvider>
             {IS_DEMO_DATA && <DemoDataBanner />}
-            <SiteHeader />
-            <main id="main">{children}</main>
-            <SiteFooter />
+
+            {/*
+              The tab bar is fixed, so main reserves its height plus the safe
+              area. Without this the last card sits under the bar and nobody
+              can reach it.
+            */}
+            <main
+              id="main"
+              className="mx-auto min-h-dvh max-w-app bg-white pb-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom))]"
+            >
+              {children}
+            </main>
+
+            <BottomTabBar />
           </DonorProvider>
         </ToastProvider>
       </body>

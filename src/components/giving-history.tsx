@@ -20,7 +20,7 @@ export function GivingHistory() {
   const [logging, setLogging] = React.useState(false);
   const [year, setYear] = React.useState<number | "all">("all");
 
-  if (!ready) return <div className="h-48 animate-pulse rounded-[8px] bg-ink-050" aria-hidden />;
+  if (!ready) return <div className="h-48 animate-pulse rounded-card bg-ink-050" aria-hidden />;
 
   const years = [...new Set(gifts.map(yearOf))].sort((a, b) => b - a);
   const rows = (year === "all" ? gifts : gifts.filter((g) => yearOf(g) === year)).slice().sort(
@@ -45,7 +45,7 @@ export function GivingHistory() {
                 onChange={(e) =>
                   setYear(e.target.value === "all" ? "all" : Number(e.target.value))
                 }
-                className="h-10 rounded-[8px] border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
+                className="h-10 rounded-card border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
               >
                 <option value="all">All</option>
                 {years.map((y) => (
@@ -134,7 +134,7 @@ export function GivingHistory() {
                         type="button"
                         onClick={() => removeGift(gift.id)}
                         aria-label={`Remove gift to ${gift.orgName} on ${formatDate(gift.givenAt)}`}
-                        className="rounded-[8px] p-2 text-ink-600 hover:bg-ink-050 hover:text-danger"
+                        className="rounded-card p-2 text-ink-600 hover:bg-ink-050 hover:text-danger"
                       >
                         <Trash2 aria-hidden className="size-4" />
                       </button>

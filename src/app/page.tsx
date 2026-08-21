@@ -30,10 +30,10 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="border-b border-ink-300 bg-brand-050">
-        <div className="page grid items-center gap-8 py-10 md:grid-cols-[1fr_auto] md:py-14">
+      <section className="border-b border-ink-300 bg-blue-050">
+        <div className="app grid items-center gap-8 py-10 md:grid-cols-[1fr_auto] md:py-14">
           <div>
-          <h1 className="max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight text-brand-900 md:text-4xl">
+          <h1 className="max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight text-blue-900 md:text-4xl">
             Where would you like your tzedaka to go?
           </h1>
           <p className="mt-3 max-w-xl text-base text-ink-600">
@@ -73,7 +73,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="page">
+      <div className="app">
         {/* The category rail is the primary navigation, exactly as the cuisine
             rail is on a delivery app: the first decision is what kind of need,
             not which organization. */}
@@ -119,7 +119,7 @@ export default function HomePage() {
           </Section>
         )}
 
-        <section className="my-8 rounded-[16px] border border-ink-300 bg-ink-050 p-6 md:p-10">
+        <section className="my-8 rounded-sheet border border-ink-300 bg-ink-050 p-6 md:p-10">
           <h2 className="font-display text-xl font-bold text-ink-900">
             Run an organization? Your listing may already be here.
           </h2>
@@ -131,13 +131,13 @@ export default function HomePage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/claim"
-              className="inline-flex h-12 items-center rounded-[8px] bg-brand-700 px-6 font-semibold text-white hover:bg-brand-900"
+              className="inline-flex h-12 items-center rounded-card bg-blue-700 px-6 font-semibold text-white hover:bg-blue-900"
             >
               Claim your listing
             </Link>
             <Link
               href="/for-organizations"
-              className="inline-flex h-12 items-center rounded-[8px] border border-ink-300 bg-white px-6 font-semibold text-brand-700 hover:bg-brand-050"
+              className="inline-flex h-12 items-center rounded-card border border-ink-300 bg-white px-6 font-semibold text-blue-700 hover:bg-blue-050"
             >
               How it works for organizations
             </Link>

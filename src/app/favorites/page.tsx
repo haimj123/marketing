@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function FavoritesPage() {
   return (
-    <div className="page py-8">
+    <div className="app py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Favorites
       </h1>

@@ -11,10 +11,10 @@ type Variant = "primary" | "secondary" | "ghost" | "danger";
 type Size = "lg" | "md" | "sm";
 
 const VARIANT: Record<Variant, string> = {
-  primary: "bg-brand-700 text-white hover:bg-brand-900 active:bg-brand-900",
+  primary: "bg-blue-700 text-white hover:bg-blue-900 active:bg-blue-900",
   secondary:
-    "bg-white text-brand-700 border border-ink-300 hover:border-brand-500 hover:bg-brand-050",
-  ghost: "bg-transparent text-brand-700 hover:bg-brand-050",
+    "bg-white text-blue-700 border border-ink-300 hover:border-blue-500 hover:bg-blue-050",
+  ghost: "bg-transparent text-blue-700 hover:bg-blue-050",
   danger: "bg-white text-danger border border-ink-300 hover:border-danger hover:bg-red-50",
 };
 
@@ -25,7 +25,7 @@ const SIZE: Record<Size, string> = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-[8px] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-card font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;

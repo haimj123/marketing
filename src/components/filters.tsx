@@ -156,7 +156,7 @@ function FilterBody({ onDone }: { onDone?: () => void }) {
                   next.delete("radius");
                 })
               }
-              className="text-sm font-semibold text-brand-700 underline underline-offset-2"
+              className="text-sm font-semibold text-blue-700 underline underline-offset-2"
             >
               Clear location
             </button>
@@ -228,7 +228,7 @@ export function FilterSheetButton({ activeCount }: { activeCount: number }) {
         <SlidersHorizontal aria-hidden className="size-4" />
         Filters
         {activeCount > 0 && (
-          <span className="tabular rounded-full bg-brand-700 px-1.5 text-xs text-white">
+          <span className="tabular rounded-full bg-blue-700 px-1.5 text-xs text-white">
             {activeCount}
           </span>
         )}
@@ -246,7 +246,7 @@ export function FilterSheetButton({ activeCount }: { activeCount: number }) {
             role="dialog"
             aria-modal="true"
             aria-label="Filters"
-            className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-t-[16px] bg-white p-5"
+            className="absolute inset-x-0 bottom-0 max-h-[85dvh] overflow-y-auto rounded-t-sheet bg-white p-5"
           >
             <div className="mb-4 flex items-center justify-between">
               <h2 className="font-display text-lg font-bold">Filters</h2>
@@ -275,7 +275,7 @@ export function SortSelect({ value }: { value: string }) {
       <select
         value={value}
         onChange={(e) => write((next) => next.set("sort", e.target.value))}
-        className="h-10 rounded-[8px] border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
+        className="h-10 rounded-card border border-ink-300 bg-white px-3 text-sm font-semibold text-ink-900"
       >
         {SORTS.map((s) => (
           <option key={s.key} value={s.key}>
@@ -336,7 +336,7 @@ export function ActiveFilterPills() {
           <button
             type="button"
             onClick={() => write(pill.clear)}
-            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-brand-700 bg-brand-050 px-3 text-xs font-semibold text-brand-900"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-blue-700 bg-blue-050 px-3 text-xs font-semibold text-blue-900"
           >
             {pill.label}
             <X aria-hidden className="size-3.5" />

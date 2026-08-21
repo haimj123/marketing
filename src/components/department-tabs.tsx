@@ -49,7 +49,7 @@ export function DepartmentTabs({
               className={cn(
                 "inline-flex h-9 items-center whitespace-nowrap rounded-full border px-3.5 text-sm font-semibold transition-colors",
                 active === section.id
-                  ? "border-brand-700 bg-brand-050 text-brand-900"
+                  ? "border-blue-700 bg-blue-050 text-blue-900"
                   : "border-transparent text-ink-600 hover:text-ink-900",
               )}
             >

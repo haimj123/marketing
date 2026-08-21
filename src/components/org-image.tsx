@@ -22,9 +22,9 @@ function initials(name: string): string {
 }
 
 const FIELDS = [
-  "from-brand-900 to-brand-700",
-  "from-brand-700 to-brand-500",
-  "from-brand-900 to-brand-500",
+  "from-blue-900 to-blue-700",
+  "from-blue-700 to-blue-500",
+  "from-blue-900 to-blue-500",
 ];
 
 function hash(s: string): number {

@@ -98,7 +98,7 @@ export function SearchBox({
         <label htmlFor="site-search" className="sr-only">
           Search organizations
         </label>
-        <div className="flex h-11 items-center gap-2 rounded-[8px] border border-ink-300 bg-ink-050 px-3 focus-within:border-brand-500 focus-within:bg-white">
+        <div className="flex h-11 items-center gap-2 rounded-card border border-ink-300 bg-ink-050 px-3 focus-within:border-blue-500 focus-within:bg-white">
           <Search aria-hidden className="size-4 shrink-0 text-ink-600" />
           <input
             id="site-search"
@@ -126,7 +126,7 @@ export function SearchBox({
         <ul
           id="search-suggestions"
           role="listbox"
-          className="absolute inset-x-0 top-[52px] z-40 overflow-hidden rounded-[8px] border border-ink-300 bg-white shadow-[0_8px_24px_rgba(0,0,0,.12)]"
+          className="absolute inset-x-0 top-[52px] z-40 overflow-hidden rounded-card border border-ink-300 bg-white shadow-[0_8px_24px_rgba(0,0,0,.12)]"
         >
           {hits.map((hit, i) => (
             <li key={hit.slug} role="option" aria-selected={i === active}>
@@ -135,7 +135,7 @@ export function SearchBox({
                 onClick={() => setOpen(false)}
                 className={cn(
                   "flex items-center justify-between gap-3 px-3 py-2.5 text-sm",
-                  i === active ? "bg-brand-050" : "hover:bg-ink-050",
+                  i === active ? "bg-blue-050" : "hover:bg-ink-050",
                 )}
               >
                 <span className="min-w-0">
@@ -153,7 +153,7 @@ export function SearchBox({
                 router.push(`/search?q=${encodeURIComponent(query.trim())}`);
                 setOpen(false);
               }}
-              className="w-full border-t border-ink-050 px-3 py-2.5 text-left text-sm font-semibold text-brand-700 hover:bg-ink-050"
+              className="w-full border-t border-ink-050 px-3 py-2.5 text-left text-sm font-semibold text-blue-700 hover:bg-ink-050"
             >
               See all results for “{query.trim()}”
             </button>

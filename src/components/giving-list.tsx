@@ -67,7 +67,7 @@ export function GivingList() {
     };
   }, [slugs]);
 
-  if (!ready) return <div className="h-48 animate-pulse rounded-[8px] bg-ink-050" aria-hidden />;
+  if (!ready) return <div className="h-48 animate-pulse rounded-card bg-ink-050" aria-hidden />;
 
   if (givingList.length === 0) {
     return (
@@ -159,7 +159,7 @@ export function GivingList() {
 
                   <label className="flex items-center gap-2">
                     <span className="sr-only">Intended amount for {item.orgName}</span>
-                    <div className="flex h-10 w-28 items-center rounded-[8px] border border-ink-300 px-2 focus-within:border-brand-500">
+                    <div className="flex h-10 w-28 items-center rounded-card border border-ink-300 px-2 focus-within:border-blue-500">
                       <span className="text-ink-600">$</span>
                       <input
                         type="text"
@@ -180,7 +180,7 @@ export function GivingList() {
                     type="button"
                     onClick={() => removeFromGivingList(item.id)}
                     aria-label={`Remove ${item.orgName} from giving list`}
-                    className="rounded-[8px] p-2 text-ink-600 hover:bg-ink-050 hover:text-danger"
+                    className="rounded-card p-2 text-ink-600 hover:bg-ink-050 hover:text-danger"
                   >
                     <Trash2 aria-hidden className="size-4" />
                   </button>
@@ -198,7 +198,7 @@ export function GivingList() {
             <button
               type="button"
               onClick={clearCompletedGivingList}
-              className="text-sm font-semibold text-brand-700 underline underline-offset-2"
+              className="text-sm font-semibold text-blue-700 underline underline-offset-2"
             >
               Clear
             </button>
@@ -257,7 +257,7 @@ function GiveThroughStep({
         <button
           type="button"
           onClick={onStop}
-          className="text-sm font-semibold text-brand-700 underline underline-offset-2"
+          className="text-sm font-semibold text-blue-700 underline underline-offset-2"
         >
           Back to the list
         </button>
@@ -265,7 +265,7 @@ function GiveThroughStep({
 
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink-050">
         <div
-          className="h-full rounded-full bg-brand-700 transition-[width]"
+          className="h-full rounded-full bg-blue-700 transition-[width]"
           style={{ width: `${((position - 1) / total) * 100}%` }}
         />
       </div>
@@ -273,14 +273,14 @@ function GiveThroughStep({
       <Card className="mt-6 p-6">
         <h2 className="font-display text-2xl font-extrabold text-ink-900">{item.orgName}</h2>
         {item.campaignTitle && <p className="mt-1 text-ink-600">{item.campaignTitle}</p>}
-        <p className="tabular mt-4 font-display text-3xl font-extrabold text-brand-700">
+        <p className="tabular mt-4 font-display text-3xl font-extrabold text-blue-700">
           {formatCents(item.amountCents)}
         </p>
 
         {methods.length === 0 ? (
           <p className="mt-4 text-sm text-ink-600">
             This listing has no payment details on file. Open{" "}
-            <Link href={`/org/${item.orgSlug}`} className="font-semibold text-brand-700 underline">
+            <Link href={`/org/${item.orgSlug}`} className="font-semibold text-blue-700 underline">
               its profile
             </Link>{" "}
             for what we do know.
@@ -290,10 +290,10 @@ function GiveThroughStep({
             {methods.slice(0, 3).map((method) => {
               const deepLink = method.externalUrl ?? paymentDeepLink(method.type, method.handle);
               return (
-                <div key={method.id} className="rounded-[8px] border border-ink-300 p-4">
+                <div key={method.id} className="rounded-card border border-ink-300 p-4">
                   <p className="text-sm font-semibold text-ink-900">{method.displayName}</p>
                   <div className="mt-2 flex flex-wrap items-center gap-2">
-                    <code className="min-w-0 flex-1 truncate rounded-[8px] bg-ink-050 px-3 py-2.5 font-mono text-sm">
+                    <code className="min-w-0 flex-1 truncate rounded-card bg-ink-050 px-3 py-2.5 font-mono text-sm">
                       {method.handle}
                     </code>
                     <CopyButton value={method.handle} label="Copy" />
@@ -302,7 +302,7 @@ function GiveThroughStep({
                         href={deepLink}
                         target="_blank"
                         rel="noopener noreferrer nofollow"
-                        className="inline-flex h-10 items-center rounded-[8px] bg-brand-700 px-4 text-sm font-semibold text-white hover:bg-brand-900"
+                        className="inline-flex h-10 items-center rounded-card bg-blue-700 px-4 text-sm font-semibold text-white hover:bg-blue-900"
                       >
                         Open {PAYMENT_LABEL[method.type]}
                       </a>

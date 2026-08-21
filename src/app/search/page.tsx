@@ -40,7 +40,7 @@ export default async function SearchPage({
   const rows = all.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
   return (
-    <div className="page py-8">
+    <div className="app py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         {query ? `Results for “${query}”` : "Search"}
       </h1>

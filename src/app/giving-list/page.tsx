@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function GivingListPage() {
   return (
-    <div className="page max-w-3xl py-8">
+    <div className="app max-w-3xl py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Giving list
       </h1>

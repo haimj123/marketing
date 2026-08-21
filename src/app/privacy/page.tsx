@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <Prose title="Privacy" lead="The short version: your giving data is on your device, not ours.">
-      <p className="rounded-[8px] bg-bronze-100 p-4 text-sm text-bronze-600">
+      <p className="rounded-card bg-bronze-100 p-4 text-sm text-bronze-600">
         <strong>Draft.</strong> This describes current behavior. Review it whenever the data model
         changes — in particular when accounts are added.
       </p>

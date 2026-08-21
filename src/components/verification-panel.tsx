@@ -48,7 +48,7 @@ export function VerificationPanel({
   return (
     <section
       aria-labelledby="verification-heading"
-      className="rounded-[8px] border border-ink-300 p-5"
+      className="rounded-card border border-ink-300 p-5"
     >
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 id="verification-heading" className="font-display text-lg font-bold text-ink-900">
@@ -71,14 +71,14 @@ export function VerificationPanel({
         ))}
       </dl>
 
-      <p className="mt-4 rounded-[8px] bg-ink-050 p-3 text-sm text-ink-600">
+      <p className="mt-4 rounded-card bg-ink-050 p-3 text-sm text-ink-600">
         {TAX_STATUS_NOTE[org.taxStatus]}
       </p>
 
       {usPartner && (
         <p className="mt-3 text-sm text-ink-900">
           US donors: give through{" "}
-          <Link href={`/org/${usPartner.slug}`} className="font-semibold text-brand-700 underline">
+          <Link href={`/org/${usPartner.slug}`} className="font-semibold text-blue-700 underline">
             {usPartner.dba ?? usPartner.legalName}
           </Link>
           , the American entity for this organization.
@@ -86,7 +86,7 @@ export function VerificationPanel({
       )}
 
       <p className="mt-4 text-xs text-ink-600">
-        <Link href="/verification" className="font-semibold text-brand-700 underline">
+        <Link href="/verification" className="font-semibold text-blue-700 underline">
           How verification works
         </Link>{" "}
         · A listing is not an endorsement, and we do not audit finances.

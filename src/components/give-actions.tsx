@@ -116,8 +116,8 @@ export function AddToGivingListButton({
             <span className="mb-1 block text-sm font-semibold text-ink-900">Or another amount</span>
             <div
               className={cn(
-                "flex h-12 items-center rounded-[8px] border px-3",
-                picked === null && custom ? "border-brand-500" : "border-ink-300",
+                "flex h-12 items-center rounded-card border px-3",
+                picked === null && custom ? "border-blue-500" : "border-ink-300",
               )}
             >
               <span className="mr-1 text-ink-600">$</span>
@@ -163,13 +163,13 @@ export function FavoriteButton({ orgSlug, orgName }: { orgSlug: string; orgName:
         toast(on ? `Removed ${orgName} from favorites` : `Saved ${orgName} to favorites`);
       }}
       className={cn(
-        "inline-flex h-12 items-center gap-2 rounded-[8px] border px-4 text-sm font-semibold transition-colors",
+        "inline-flex h-12 items-center gap-2 rounded-card border px-4 text-sm font-semibold transition-colors",
         on
-          ? "border-brand-700 bg-brand-050 text-brand-900"
-          : "border-ink-300 bg-white text-ink-900 hover:border-brand-500",
+          ? "border-blue-700 bg-blue-050 text-blue-900"
+          : "border-ink-300 bg-white text-ink-900 hover:border-blue-500",
       )}
     >
-      <Heart aria-hidden className={cn("size-4", on && "fill-brand-700 text-brand-700")} />
+      <Heart aria-hidden className={cn("size-4", on && "fill-blue-700 text-blue-700")} />
       {ready && on ? "Saved" : "Save"}
     </button>
   );
@@ -200,7 +200,7 @@ export function ShareButton({ title, text }: { title: string; text?: string }) {
     <button
       type="button"
       onClick={share}
-      className="inline-flex h-12 items-center gap-2 rounded-[8px] border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-900 hover:border-brand-500"
+      className="inline-flex h-12 items-center gap-2 rounded-card border border-ink-300 bg-white px-4 text-sm font-semibold text-ink-900 hover:border-blue-500"
     >
       <Share2 aria-hidden className="size-4" />
       Share

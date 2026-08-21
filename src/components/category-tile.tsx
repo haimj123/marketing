@@ -9,7 +9,7 @@ export function CategoryTile({ category, count }: { category: Category; count?: 
       href={`/c/${category.slug}`}
       className="group flex w-[92px] flex-col items-center gap-2 text-center"
     >
-      <span className="flex size-14 items-center justify-center rounded-full bg-brand-050 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white">
+      <span className="flex size-14 items-center justify-center rounded-full bg-blue-050 text-blue-700 transition-colors group-hover:bg-blue-700 group-hover:text-white">
         <CategoryIcon iconKey={category.iconKey} className="size-6" />
       </span>
       <span className="text-xs font-semibold leading-tight text-ink-900">{category.nameEn}</span>
@@ -22,9 +22,9 @@ export function CategoryCard({ category, count }: { category: Category; count?: 
   return (
     <Link
       href={`/c/${category.slug}`}
-      className="group flex items-start gap-3 rounded-[8px] border border-ink-300 bg-white p-4 transition-shadow hover:shadow-[0_2px_8px_rgba(0,0,0,.08)]"
+      className="group flex items-start gap-3 rounded-card border border-ink-300 bg-white p-4 transition-shadow hover:shadow-[0_2px_8px_rgba(0,0,0,.08)]"
     >
-      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-brand-050 text-brand-700 transition-colors group-hover:bg-brand-700 group-hover:text-white">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-blue-050 text-blue-700 transition-colors group-hover:bg-blue-700 group-hover:text-white">
         <CategoryIcon iconKey={category.iconKey} className="size-5" />
       </span>
       <span className="min-w-0">

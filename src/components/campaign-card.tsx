@@ -71,7 +71,7 @@ export function CampaignCard({
       )}
 
       {status === "flagged_stale" && (
-        <p className="mt-3 flex items-start gap-2 rounded-[8px] bg-ink-050 p-3 text-sm text-warning">
+        <p className="mt-3 flex items-start gap-2 rounded-card bg-ink-050 p-3 text-sm text-warning">
           <AlertTriangle aria-hidden className="mt-0.5 size-4 shrink-0" />
           <span>
             The organization last updated this figure {timeAgo(campaign.raisedUpdatedAt)}

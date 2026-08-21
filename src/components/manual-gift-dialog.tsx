@@ -107,7 +107,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
               setSlug(null);
             }}
             placeholder="Start typing, or enter any name"
-            className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
           />
           {slug && (
             <span className="mt-1 block text-xs text-success">
@@ -117,7 +117,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
         </label>
 
         {hits.length > 0 && (
-          <ul className="-mt-2 overflow-hidden rounded-[8px] border border-ink-300">
+          <ul className="-mt-2 overflow-hidden rounded-card border border-ink-300">
             {hits.map((hit) => (
               <li key={hit.slug}>
                 <button
@@ -140,7 +140,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
         <div className="grid grid-cols-2 gap-3">
           <label className="block">
             <span className="mb-1 block text-sm font-semibold text-ink-900">Amount</span>
-            <div className="flex h-12 items-center rounded-[8px] border border-ink-300 px-3 focus-within:border-brand-500">
+            <div className="flex h-12 items-center rounded-card border border-ink-300 px-3 focus-within:border-blue-500">
               <span className="mr-1 text-ink-600">$</span>
               <input
                 type="text"
@@ -160,7 +160,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
               value={date}
               max={todayISO()}
               onChange={(e) => setDate(e.target.value)}
-              className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+              className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
             />
           </label>
         </div>
@@ -172,7 +172,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
           <select
             value={method}
             onChange={(e) => setMethod(e.target.value as PaymentMethodType | "")}
-            className="h-12 w-full rounded-[8px] border border-ink-300 bg-white px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 bg-white px-3 text-base outline-none focus:border-blue-500"
           >
             <option value="">Not recorded</option>
             {METHODS.map((m) => (
@@ -192,7 +192,7 @@ export function ManualGiftDialog({ open, onClose }: { open: boolean; onClose: ()
             value={note}
             maxLength={140}
             onChange={(e) => setNote(e.target.value)}
-            className="h-12 w-full rounded-[8px] border border-ink-300 px-3 text-base outline-none focus:border-brand-500"
+            className="h-12 w-full rounded-card border border-ink-300 px-3 text-base outline-none focus:border-blue-500"
           />
         </label>
 

@@ -38,8 +38,8 @@ export default async function AdminPage({
   // says why, rather than quietly exposing them.
   if (!token) {
     return (
-      <div className="page max-w-2xl py-12">
-        <div className="rounded-[8px] border border-warning/40 bg-bronze-100 p-6">
+      <div className="app max-w-2xl py-12">
+        <div className="rounded-card border border-warning/40 bg-bronze-100 p-6">
           <h1 className="flex items-center gap-2 font-display text-xl font-bold text-ink-900">
             <ShieldAlert aria-hidden className="size-5 text-warning" />
             Admin is not configured
@@ -61,7 +61,7 @@ export default async function AdminPage({
 
   if (supplied !== token) {
     return (
-      <div className="page max-w-2xl py-12">
+      <div className="app max-w-2xl py-12">
         <h1 className="font-display text-xl font-bold text-ink-900">Not authorised</h1>
         <p className="mt-2 text-sm text-ink-600">Append a valid ?token= to this URL.</p>
       </div>
@@ -75,10 +75,10 @@ export default async function AdminPage({
   ).length;
 
   return (
-    <div className="page py-8">
+    <div className="app py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">Admin</h1>
 
-      <p className="mt-3 flex items-start gap-2 rounded-[8px] bg-bronze-100 p-4 text-sm text-bronze-600">
+      <p className="mt-3 flex items-start gap-2 rounded-card bg-bronze-100 p-4 text-sm text-bronze-600">
         <AlertTriangle aria-hidden className="mt-0.5 size-4 shrink-0" />
         Request queues are held in the server&rsquo;s memory and are lost on redeploy. This is a
         development affordance, not storage.
@@ -150,7 +150,7 @@ export default async function AdminPage({
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-[8px] border border-ink-300 p-4">
+    <div className="rounded-card border border-ink-300 p-4">
       <dt className="text-xs font-semibold uppercase tracking-wide text-ink-600">{label}</dt>
       <dd className="tabular mt-1 font-display text-2xl font-extrabold text-ink-900">
         {value.toLocaleString()}

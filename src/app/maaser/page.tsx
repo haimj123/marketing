@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function MaaserPage() {
   return (
-    <div className="page max-w-5xl py-8">
+    <div className="app max-w-5xl py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Maaser tracker
       </h1>

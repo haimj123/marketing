@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Shaare Tzadaka design system.
+   Shaare Tzadaka design tokens.
 
-   Blue does all the interactive work. White does all the breathing.
-   Bronze is a *signal*, not a second brand colour: it is allowed on the
-   verification badge, campaign progress fill and the maaser ring, and
-   nowhere else. If bronze lands on a generic button, it has been diluted.
+   Every colour, radius, shadow and type size in the app derives from this
+   block. Blue does all interactive work. White is the card surface,
+   --ink-050 is the page beneath it.
+
+   Bronze is a *signal*, not a second brand colour. It is allowed on exactly
+   three things: the verified badge, campaign progress fill, and the maaser
+   ring. If bronze lands on a button, it has been diluted.
 --------------------------------------------------------------------------- */
 
 @theme {
   /* Blue — primary, navigation, links, CTAs */
-  --color-brand-900: #062b5c;
-  --color-brand-700: #0a3d91;
-  --color-brand-500: #1157c4;
-  --color-brand-050: #edf3fc;
+  --color-blue-900: #062b5c;
+  --color-blue-700: #0a3d91;
+  --color-blue-500: #1157c4;
+  --color-blue-050: #edf3fc;
 
-  /* Bronze — verification, progress, achievement. Signal only.
-     bronze-500 on white fails AA below 18px: use bronze-600 for type. */
+  /* Bronze — signal only. bronze-500 on white fails AA below 18px, so any
+     bronze *type* uses bronze-600. */
   --color-bronze-600: #8c6a34;
   --color-bronze-500: #b08a4f;
   --color-bronze-100: #f4eada;
@@ -30,46 +33,65 @@
 
   /* Semantic */
   --color-success: #1b7f4e;
-  --color-warning: #b45309;
   --color-danger: #b42318;
+  /* Not in the original palette. The stale-campaign state needs a colour that
+     is neither success nor danger: an out-of-date figure is not a dishonest
+     organization, and --danger would say that it is. */
+  --color-warning: #b45309;
 
-  /* Type */
+  /* Type — Plus Jakarta for headings and organization names, Inter for
+     everything else, Frank Ruhl Libre for Hebrew. */
   --font-display: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-hebrew: var(--font-frank-ruhl), var(--font-inter), serif;
 
-  /* Scale: 12 / 14 / 16 / 18 / 22 / 28 / 36 / 48 */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
-  --text-3xl: 2.25rem;
-  --text-4xl: 3rem;
+  /* Scale, in the brief's px values. */
+  --text-2xs: 0.625rem;   /* 10 — tab bar labels */
+  --text-xs: 0.75rem;     /* 12 — category tile labels, pills */
+  --text-sm: 0.875rem;    /* 14 — meta rows, descriptions */
+  --text-base: 1rem;      /* 16 — campaign titles, body */
+  --text-lg: 1.0625rem;   /* 17 — organization card titles */
+  --text-xl: 1.25rem;     /* 20 — section headers */
+  --text-2xl: 1.625rem;   /* 26 — organization name on a profile */
+  --text-3xl: 2rem;       /* 32 — prose h1 */
 
-  /* Geometry — matched to the Uber Eats shell */
+  /* Radii */
   --radius-card: 8px;
-  --radius-modal: 16px;
-  --radius-chip: 999px;
+  --radius-pill: 999px;
+  --radius-sheet: 16px;
 
-  --shadow-card-hover: 0 2px 8px rgb(0 0 0 / 0.08);
+  /* Elevation. Cards themselves are flat, as on Uber Eats — shadow is
+     reserved for things floating *over* content. */
+  --shadow-float: 0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.08);
+  --shadow-sheet: 0 -2px 16px rgb(0 0 0 / 0.12);
+  --shadow-toast: 0 4px 16px rgb(0 0 0 / 0.24);
+  --shadow-menu: 0 8px 24px rgb(0 0 0 / 0.12);
 
-  --spacing-header: 64px;
-  --container-page: 1280px;
+  /* Shell geometry */
+  --spacing-gutter: 16px;
+  --spacing-header: 56px;
+  --spacing-tabbar: 56px;
+
+  /* Desktop is this column, centred. There is no separate desktop layout. */
+  --container-app: 480px;
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    /* The sticky department tabs and chip rows scroll to anchors; without this
+       the target lands under the header. */
+    scroll-behavior: smooth;
   }
 
   body {
-    background: #fff;
+    background: var(--color-ink-050);
     color: var(--color-ink-900);
     font-family: var(--font-sans);
     font-size: var(--text-base);
-    line-height: 1.5;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
   }
 
   h1,
@@ -81,9 +103,9 @@
     letter-spacing: -0.01em;
   }
 
-  /* Focus visibility is a WCAG 2.1 AA requirement, not decoration. */
+  /* AA requires a visible focus indicator; this is not decoration. */
   :focus-visible {
-    outline: 2px solid var(--color-brand-500);
+    outline: 2px solid var(--color-blue-500);
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -97,31 +119,38 @@
   .tabular {
     font-variant-numeric: tabular-nums;
   }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
-/* These live in the components layer, not utilities: `.rail` sets display, and
-   a utility like `md:hidden` has to be able to win against it. */
 @layer components {
-  .page {
+  /* The app column. 16px gutter on every screen, no exceptions. */
+  .app {
     margin-inline: auto;
-    max-width: var(--container-page);
-    padding-inline: 16px;
+    width: 100%;
+    max-width: var(--container-app);
+    padding-inline: var(--spacing-gutter);
   }
 
-  @media (min-width: 768px) {
-    .page {
-      padding-inline: 24px;
-    }
+  /* Full-bleed inside .app — for hero images and rails that must run to the
+     screen edge so the cut-off item signals scrollability. */
+  .bleed {
+    margin-inline: calc(var(--spacing-gutter) * -1);
   }
 
-  /* Horizontal rails: scroll on touch, no visible scrollbar. */
+  /* Horizontal rails: momentum scroll, no visible scrollbar, and padding that
+     lets the last item sit cut off at the edge. */
   .rail {
     display: flex;
     gap: 16px;
     overflow-x: auto;
-    scroll-snap-type: x proximity;
+    padding-inline: var(--spacing-gutter);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .rail::-webkit-scrollbar {
@@ -129,25 +158,99 @@
   }
 
   .rail > * {
-    scroll-snap-align: start;
     flex: 0 0 auto;
   }
 
-  .line-clamp-2-safe {
+  /*
+   * Press feedback. This is what separates an app from a website, and it is
+   * a CSS class rather than a React wrapper so server components get it for
+   * free — no hydration, no JS on the critical path.
+   */
+  .press {
+    transition: transform 120ms ease-out;
+    touch-action: manipulation;
+  }
+
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  .clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  /* Skeletons are shaped like the content they replace, never a spinner. */
+  .skeleton {
+    background: var(--color-ink-300);
+    opacity: 0.35;
+    animation: skeleton-pulse 1.4s ease-in-out infinite;
+  }
 }
 
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Keep opacity fades, drop every transform. */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  }
+
+  .press:active {
+    transform: none;
+  }
+
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }

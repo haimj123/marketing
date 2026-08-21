@@ -16,7 +16,7 @@ export default async function RequestRemovalPage({
   const org = typeof raw.org === "string" ? raw.org : undefined;
 
   return (
-    <div className="page max-w-2xl py-8">
+    <div className="app max-w-2xl py-8">
       <h1 className="font-display text-2xl font-extrabold tracking-tight text-ink-900">
         Request removal
       </h1>

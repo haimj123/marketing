@@ -53,7 +53,7 @@ export function OrgCard({
 
         <div className="p-4">
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-display text-lg font-bold leading-snug text-ink-900 line-clamp-2-safe">
+            <h3 className="font-display text-lg font-bold leading-snug text-ink-900 clamp-2">
               {org.dba ?? org.legalName}
             </h3>
           </div>
@@ -76,12 +76,12 @@ export function OrgCard({
           )}
 
           {org.tagline && !unclaimed && (
-            <p className="mt-2 text-sm text-ink-600 line-clamp-2-safe">{org.tagline}</p>
+            <p className="mt-2 text-sm text-ink-600 clamp-2">{org.tagline}</p>
           )}
 
           {campaign?.goalCents ? (
             <div className="mt-3 border-t border-ink-050 pt-3">
-              <p className="mb-2 text-sm font-semibold text-ink-900 line-clamp-2-safe">
+              <p className="mb-2 text-sm font-semibold text-ink-900 clamp-2">
                 {campaign.title}
               </p>
               <ProgressBar

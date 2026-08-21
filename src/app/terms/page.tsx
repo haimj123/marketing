@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <Prose title="Terms of use" lead="Short, because the service is narrow.">
-      <p className="rounded-[8px] bg-bronze-100 p-4 text-sm text-bronze-600">
+      <p className="rounded-card bg-bronze-100 p-4 text-sm text-bronze-600">
         <strong>Draft.</strong> These terms describe how the service actually behaves and are
         written to be read, not to be relied on as a finished legal document. Have a lawyer review
         them before launch.

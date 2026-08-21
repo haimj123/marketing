@@ -25,7 +25,7 @@ export function Section({
         {href && (
           <Link
             href={href}
-            className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-brand-700 hover:text-brand-900"
+            className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-blue-700 hover:text-blue-900"
           >
             {hrefLabel}
             <ChevronRight aria-hidden className="size-4" />

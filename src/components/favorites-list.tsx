@@ -30,7 +30,7 @@ export function FavoritesList() {
   }, [key]);
 
   if (!ready || orgs === null) {
-    return <div className="h-64 animate-pulse rounded-[8px] bg-ink-050" aria-hidden />;
+    return <div className="h-64 animate-pulse rounded-card bg-ink-050" aria-hidden />;
   }
 
   if (orgs.length === 0) {

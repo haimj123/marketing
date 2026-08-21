@@ -113,8 +113,8 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
         />
       </div>
 
-      <div className="page">
-        <div className="-mt-6 rounded-t-[16px] bg-white pt-6">
+      <div className="app">
+        <div className="-mt-6 rounded-t-sheet bg-white pt-6">
           <div className="flex flex-wrap items-center gap-2">
             <VerificationBadge level={org.verificationLevel} size="md" />
             {org.categorySlugs.map((s) => {
@@ -192,7 +192,7 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
               /* Without a story or departments the left column would be empty
                  next to a tall verification panel, which reads as a broken
                  page rather than an incomplete one. Say what is missing. */
-              <section className="rounded-[8px] border border-ink-300 p-5">
+              <section className="rounded-card border border-ink-300 p-5">
                 <h2 className="font-display text-lg font-bold text-ink-900">
                   What the public record says
                 </h2>
@@ -274,7 +274,7 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
                 </p>
                 <ul className="mt-4 space-y-4">
                   {org.endorsements.map((e) => (
-                    <li key={e.id} className="rounded-[8px] border border-bronze-100 bg-bronze-100/40 p-5">
+                    <li key={e.id} className="rounded-card border border-bronze-100 bg-bronze-100/40 p-5">
                       <blockquote className="text-base text-ink-900">
                         &ldquo;{e.quote}&rdquo;
                       </blockquote>
@@ -294,7 +294,7 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
 
             <Link
               href={`/report?org=${org.slug}`}
-              className="flex items-center gap-2 rounded-[8px] border border-ink-300 p-4 text-sm font-semibold text-ink-900 hover:border-danger hover:text-danger"
+              className="flex items-center gap-2 rounded-card border border-ink-300 p-4 text-sm font-semibold text-ink-900 hover:border-danger hover:text-danger"
             >
               <Flag aria-hidden className="size-4" />
               Report a problem with this listing

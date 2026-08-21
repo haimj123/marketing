@@ -19,7 +19,7 @@ export default function VerificationPage() {
     >
       <ul className="!list-none !pl-0">
         {VERIFICATION_ORDER.map((level) => (
-          <li key={level} className="rounded-[8px] border border-ink-300 p-5 !mb-4">
+          <li key={level} className="rounded-card border border-ink-300 p-5 !mb-4">
             <VerificationBadge level={level} size="md" asLink={false} />
             <p className="mt-2">{VERIFICATION_MEANING[level]}</p>
           </li>
