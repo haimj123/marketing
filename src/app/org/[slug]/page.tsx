@@ -188,6 +188,28 @@ export default async function OrgPage({ params }: { params: Promise<{ slug: stri
 
         <div className="mt-6 flex flex-col gap-10 pb-4 lg:flex-row">
           <div className="min-w-0 flex-1 space-y-10">
+            {unclaimed && (
+              /* Without a story or departments the left column would be empty
+                 next to a tall verification panel, which reads as a broken
+                 page rather than an incomplete one. Say what is missing. */
+              <section className="rounded-[8px] border border-ink-300 p-5">
+                <h2 className="font-display text-lg font-bold text-ink-900">
+                  What the public record says
+                </h2>
+                <p className="mt-2 text-sm text-ink-600">
+                  {org.legalName} is listed in the IRS Business Master File
+                  {org.rulingYear ? ` with recognition dating to ${org.rulingYear}` : ""}
+                  {org.city ? `, at an address in ${org.city}${org.region ? `, ${org.region}` : ""}` : ""}
+                  . That is all we know.
+                </p>
+                <p className="mt-3 text-sm text-ink-600">
+                  What it does day to day, what it is raising for, and how to send it money are
+                  things only the organization can tell you — and it has not claimed this listing
+                  yet. If you know someone there, tell them the listing exists.
+                </p>
+              </section>
+            )}
+
             {org.storyMd && (
               <section id="about" className="scroll-mt-32">
                 <h2 className="font-display text-xl font-bold text-ink-900">About</h2>
