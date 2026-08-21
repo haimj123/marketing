@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Shaare Tzadaka">
+  <rect width="64" height="64" rx="12" fill="#FFFFFF"/>
+  <path d="M14 54V26a18 18 0 0 1 36 0v28" fill="none" stroke="#062B5C" stroke-width="5"/>
+  <path d="M22 54V27a10 10 0 0 1 20 0v27" fill="none" stroke="#B08A4F" stroke-width="4"/>
+  <path d="M32 15.5 36.6 23h-9.2L32 15.5Zm0 12L27.4 20h9.2L32 27.5Z" fill="#062B5C"/>
+  <path d="M32 50c-5.5-4.2-9-7-9-10.6a4.6 4.6 0 0 1 9-1.7 4.6 4.6 0 0 1 9 1.7C41 43 37.5 45.8 32 50Z" fill="#0A3D91"/>
+</svg>

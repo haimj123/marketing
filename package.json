@@ -1,0 +1,41 @@
+{
+  "name": "shaare-tzadaka",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A free, non-commercial discovery platform for Jewish tzedaka organizations.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "ingest:bmf": "tsx scripts/ingest-bmf.ts",
+    "test:filter": "tsx scripts/test-filter.ts",
+    "seed:demo": "tsx scripts/build-demo-seed.ts"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.44.5",
+    "lucide-react": "^0.544.0",
+    "next": "^15.5.4",
+    "postgres": "^3.4.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "server-only": "^0.0.1",
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "csv-parse": "^6.1.0",
+    "drizzle-kit": "^0.31.5",
+    "tailwindcss": "^4.1.13",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
